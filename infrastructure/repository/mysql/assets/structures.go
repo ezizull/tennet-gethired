@@ -8,7 +8,7 @@ import (
 	"gorm.io/gorm"
 )
 
-// Asset is a struct that contains the book model
+// Asset is a struct that contains the asset model
 type Asset struct {
 	ID        int64           `json:"id" gorm:"primaryKey"`
 	WalletID  int64           `json:"wallet_id"`
@@ -27,7 +27,7 @@ func (*Asset) TableName() string {
 	return "assets"
 }
 
-// PaginationResultAsset is a struct that contains the pagination result for book
+// PaginationResultAsset is a struct that contains the pagination result for asset
 type PaginationResultAsset struct {
 	Data       *[]domainAsset.Asset
 	Total      int64

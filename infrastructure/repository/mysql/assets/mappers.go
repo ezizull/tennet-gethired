@@ -2,35 +2,35 @@ package assets
 
 import domainAsset "tennet/gethired/domain/assets"
 
-func (book *Asset) toDomainMapper() *domainAsset.Asset {
+func (asset *Asset) toDomainMapper() *domainAsset.Asset {
 	return &domainAsset.Asset{
-		ID:       book.ID,
-		WalletID: book.WalletID,
-		Name:     book.Name,
-		Symbol:   book.Symbol,
-		Network:  book.Network,
-		Address:  book.Address,
-		Balance:  book.Balance,
+		ID:       asset.ID,
+		WalletID: asset.WalletID,
+		Name:     asset.Name,
+		Symbol:   asset.Symbol,
+		Network:  asset.Network,
+		Address:  asset.Address,
+		Balance:  asset.Balance,
 	}
 }
 
-func fromDomainMapper(book *domainAsset.Asset) *Asset {
+func fromDomainMapper(asset *domainAsset.Asset) *Asset {
 	return &Asset{
-		ID:       book.ID,
-		WalletID: book.WalletID,
-		Name:     book.Name,
-		Symbol:   book.Symbol,
-		Network:  book.Network,
-		Address:  book.Address,
-		Balance:  book.Balance,
+		ID:       asset.ID,
+		WalletID: asset.WalletID,
+		Name:     asset.Name,
+		Symbol:   asset.Symbol,
+		Network:  asset.Network,
+		Address:  asset.Address,
+		Balance:  asset.Balance,
 	}
 }
 
-func arrayToDomainMapper(books *[]Asset) *[]domainAsset.Asset {
-	booksDomain := make([]domainAsset.Asset, len(*books))
-	for i, book := range *books {
-		booksDomain[i] = *book.toDomainMapper()
+func arrayToDomainMapper(assets *[]Asset) *[]domainAsset.Asset {
+	assetsDomain := make([]domainAsset.Asset, len(*assets))
+	for i, asset := range *assets {
+		assetsDomain[i] = *asset.toDomainMapper()
 	}
 
-	return &booksDomain
+	return &assetsDomain
 }

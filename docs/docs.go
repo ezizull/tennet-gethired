@@ -18,11 +18,11 @@ const docTemplate = `{
     "paths": {
         "/asset": {
             "get": {
-                "description": "Get all Assets on the system",
+                "description": "Get all Wallets on the system",
                 "tags": [
                     "asset"
                 ],
-                "summary": "Get all Assets",
+                "summary": "Get all Wallets",
                 "parameters": [
                     {
                         "type": "string",
@@ -45,26 +45,26 @@ const docTemplate = `{
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/tennet_gethired_application_usecases_assets.PaginationResultAsset"
+                                "$ref": "#/definitions/tennet_gethired_application_usecases_wallet.PaginationResultWallet"
                             }
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/assets.MessageResponse"
+                            "$ref": "#/definitions/wallet.MessageResponse"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/assets.MessageResponse"
+                            "$ref": "#/definitions/wallet.MessageResponse"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/assets.MessageResponse"
+                            "$ref": "#/definitions/wallet.MessageResponse"
                         }
                     }
                 }
@@ -79,7 +79,7 @@ const docTemplate = `{
                 "tags": [
                     "asset"
                 ],
-                "summary": "Create New Asset",
+                "summary": "Create New Wallet",
                 "parameters": [
                     {
                         "description": "body data",
@@ -87,7 +87,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/assets.NewAssetRequest"
+                            "$ref": "#/definitions/wallet.NewWalletRequest"
                         }
                     }
                 ],
@@ -95,25 +95,25 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/tennet_gethired_domain_assets.Asset"
+                            "$ref": "#/definitions/tennet_gethired_domain_wallet.Wallet"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/assets.MessageResponse"
+                            "$ref": "#/definitions/wallet.MessageResponse"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/assets.MessageResponse"
+                            "$ref": "#/definitions/wallet.MessageResponse"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/assets.MessageResponse"
+                            "$ref": "#/definitions/wallet.MessageResponse"
                         }
                     }
                 }
@@ -124,7 +124,7 @@ const docTemplate = `{
                 "tags": [
                     "asset"
                 ],
-                "summary": "Get assets by ID",
+                "summary": "Get wallet by ID",
                 "parameters": [
                     {
                         "type": "integer",
@@ -138,31 +138,31 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/tennet_gethired_domain_assets.Asset"
+                            "$ref": "#/definitions/tennet_gethired_domain_wallet.Wallet"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/assets.MessageResponse"
+                            "$ref": "#/definitions/wallet.MessageResponse"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/assets.MessageResponse"
+                            "$ref": "#/definitions/wallet.MessageResponse"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/assets.MessageResponse"
+                            "$ref": "#/definitions/wallet.MessageResponse"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/assets.MessageResponse"
+                            "$ref": "#/definitions/wallet.MessageResponse"
                         }
                     }
                 }
@@ -171,7 +171,7 @@ const docTemplate = `{
                 "tags": [
                     "asset"
                 ],
-                "summary": "Get assets by ID",
+                "summary": "Get wallet by ID",
                 "parameters": [
                     {
                         "type": "integer",
@@ -185,31 +185,31 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/tennet_gethired_domain_assets.Asset"
+                            "$ref": "#/definitions/tennet_gethired_domain_wallet.Wallet"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/assets.MessageResponse"
+                            "$ref": "#/definitions/wallet.MessageResponse"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/assets.MessageResponse"
+                            "$ref": "#/definitions/wallet.MessageResponse"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/assets.MessageResponse"
+                            "$ref": "#/definitions/wallet.MessageResponse"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/assets.MessageResponse"
+                            "$ref": "#/definitions/wallet.MessageResponse"
                         }
                     }
                 }
@@ -218,7 +218,7 @@ const docTemplate = `{
                 "tags": [
                     "asset"
                 ],
-                "summary": "Get assets by ID",
+                "summary": "Get wallet by ID",
                 "parameters": [
                     {
                         "type": "integer",
@@ -232,31 +232,31 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/tennet_gethired_domain_assets.Asset"
+                            "$ref": "#/definitions/tennet_gethired_domain_wallet.Wallet"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/assets.MessageResponse"
+                            "$ref": "#/definitions/wallet.MessageResponse"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/assets.MessageResponse"
+                            "$ref": "#/definitions/wallet.MessageResponse"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/assets.MessageResponse"
+                            "$ref": "#/definitions/wallet.MessageResponse"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/assets.MessageResponse"
+                            "$ref": "#/definitions/wallet.MessageResponse"
                         }
                     }
                 }
@@ -686,6 +686,35 @@ const docTemplate = `{
                 }
             }
         },
+        "tennet_gethired_application_usecases_wallet.PaginationResultWallet": {
+            "type": "object",
+            "properties": {
+                "current": {
+                    "type": "integer"
+                },
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/tennet_gethired_domain_wallet.Wallet"
+                    }
+                },
+                "limit": {
+                    "type": "integer"
+                },
+                "nextCursor": {
+                    "type": "integer"
+                },
+                "numPages": {
+                    "type": "integer"
+                },
+                "prevCursor": {
+                    "type": "integer"
+                },
+                "total": {
+                    "type": "integer"
+                }
+            }
+        },
         "tennet_gethired_domain_assets.Asset": {
             "type": "object",
             "properties": {
@@ -709,6 +738,17 @@ const docTemplate = `{
                 },
                 "wallet_id": {
                     "type": "integer"
+                }
+            }
+        },
+        "tennet_gethired_domain_wallet.Wallet": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
                 }
             }
         },
@@ -782,6 +822,25 @@ const docTemplate = `{
                 "user": {
                     "type": "string",
                     "example": "BossonH"
+                }
+            }
+        },
+        "wallet.MessageResponse": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "wallet.NewWalletRequest": {
+            "type": "object",
+            "required": [
+                "name"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string"
                 }
             }
         }

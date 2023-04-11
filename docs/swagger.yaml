@@ -88,6 +88,25 @@ definitions:
       total:
         type: integer
     type: object
+  tennet_gethired_application_usecases_wallet.PaginationResultWallet:
+    properties:
+      current:
+        type: integer
+      data:
+        items:
+          $ref: '#/definitions/tennet_gethired_domain_wallet.Wallet'
+        type: array
+      limit:
+        type: integer
+      nextCursor:
+        type: integer
+      numPages:
+        type: integer
+      prevCursor:
+        type: integer
+      total:
+        type: integer
+    type: object
   tennet_gethired_domain_assets.Asset:
     properties:
       address:
@@ -104,6 +123,13 @@ definitions:
         type: string
       wallet_id:
         type: integer
+    type: object
+  tennet_gethired_domain_wallet.Wallet:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
     type: object
   user.MessageResponse:
     properties:
@@ -158,12 +184,24 @@ definitions:
         example: BossonH
         type: string
     type: object
+  wallet.MessageResponse:
+    properties:
+      message:
+        type: string
+    type: object
+  wallet.NewWalletRequest:
+    properties:
+      name:
+        type: string
+    required:
+    - name
+    type: object
 info:
   contact: {}
 paths:
   /asset:
     get:
-      description: Get all Assets on the system
+      description: Get all Wallets on the system
       parameters:
       - description: limit
         in: query
@@ -180,21 +218,21 @@ paths:
           description: OK
           schema:
             items:
-              $ref: '#/definitions/tennet_gethired_application_usecases_assets.PaginationResultAsset'
+              $ref: '#/definitions/tennet_gethired_application_usecases_wallet.PaginationResultWallet'
             type: array
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/assets.MessageResponse'
+            $ref: '#/definitions/wallet.MessageResponse'
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/assets.MessageResponse'
+            $ref: '#/definitions/wallet.MessageResponse'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/assets.MessageResponse'
-      summary: Get all Assets
+            $ref: '#/definitions/wallet.MessageResponse'
+      summary: Get all Wallets
       tags:
       - asset
     post:
@@ -206,27 +244,27 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/assets.NewAssetRequest'
+          $ref: '#/definitions/wallet.NewWalletRequest'
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/tennet_gethired_domain_assets.Asset'
+            $ref: '#/definitions/tennet_gethired_domain_wallet.Wallet'
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/assets.MessageResponse'
+            $ref: '#/definitions/wallet.MessageResponse'
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/assets.MessageResponse'
+            $ref: '#/definitions/wallet.MessageResponse'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/assets.MessageResponse'
-      summary: Create New Asset
+            $ref: '#/definitions/wallet.MessageResponse'
+      summary: Create New Wallet
       tags:
       - asset
   /asset/{asset_id}:
@@ -241,24 +279,24 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/tennet_gethired_domain_assets.Asset'
+            $ref: '#/definitions/tennet_gethired_domain_wallet.Wallet'
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/assets.MessageResponse'
+            $ref: '#/definitions/wallet.MessageResponse'
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/assets.MessageResponse'
+            $ref: '#/definitions/wallet.MessageResponse'
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/assets.MessageResponse'
+            $ref: '#/definitions/wallet.MessageResponse'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/assets.MessageResponse'
-      summary: Get assets by ID
+            $ref: '#/definitions/wallet.MessageResponse'
+      summary: Get wallet by ID
       tags:
       - asset
     get:
@@ -272,24 +310,24 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/tennet_gethired_domain_assets.Asset'
+            $ref: '#/definitions/tennet_gethired_domain_wallet.Wallet'
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/assets.MessageResponse'
+            $ref: '#/definitions/wallet.MessageResponse'
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/assets.MessageResponse'
+            $ref: '#/definitions/wallet.MessageResponse'
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/assets.MessageResponse'
+            $ref: '#/definitions/wallet.MessageResponse'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/assets.MessageResponse'
-      summary: Get assets by ID
+            $ref: '#/definitions/wallet.MessageResponse'
+      summary: Get wallet by ID
       tags:
       - asset
     patch:
@@ -303,24 +341,24 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/tennet_gethired_domain_assets.Asset'
+            $ref: '#/definitions/tennet_gethired_domain_wallet.Wallet'
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/assets.MessageResponse'
+            $ref: '#/definitions/wallet.MessageResponse'
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/assets.MessageResponse'
+            $ref: '#/definitions/wallet.MessageResponse'
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/assets.MessageResponse'
+            $ref: '#/definitions/wallet.MessageResponse'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/assets.MessageResponse'
-      summary: Get assets by ID
+            $ref: '#/definitions/wallet.MessageResponse'
+      summary: Get wallet by ID
       tags:
       - asset
   /auth/access-token:

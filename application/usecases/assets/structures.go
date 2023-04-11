@@ -26,7 +26,7 @@ type UpdateAsset struct {
 	Balance  *decimal.Decimal `json:"balance,omitempty" gorm:"type:decimal(16,8)" binding:"-"`
 }
 
-// PaginationResultAsset is a struct that contains the pagination result for book
+// PaginationResultAsset is a struct that contains the pagination result for asset
 type PaginationResultAsset struct {
 	Data       *[]domainAsset.Asset
 	Total      int64
