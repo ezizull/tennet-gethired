@@ -2,7 +2,6 @@ package assets
 
 import (
 	"encoding/json"
-	"log"
 
 	domainAsset "tennet/gethired/domain/assets"
 	domainErrors "tennet/gethired/domain/errors"
@@ -112,10 +111,8 @@ func (r *Repository) Update(id int64, updateAsset *domainAsset.Asset) (*domainAs
 
 	asset.ID = id
 	err := r.DB.Model(&asset).
-		Select("wallet_id", "name", "symbol", "network", "address", "balance").
 		Updates(updateAsset).Error
 
-	// err = config.DB.Save(asset).Error
 	if err != nil {
 		byteErr, _ := json.Marshal(err)
 		var newError domainErrors.GormErr
@@ -141,9 +138,7 @@ func (r *Repository) Update(id int64, updateAsset *domainAsset.Asset) (*domainAs
 
 // Delete ... Delete asset
 func (r *Repository) Delete(id int) (err error) {
-	tx := r.DB.Delete(&domainAsset.Asset{}, id)
-
-	log.Println("check ", tx)
+	tx := r.DB.Delete(&Asset{}, id)
 	if tx.Error != nil {
 		err = domainErrors.NewAppErrorWithType(domainErrors.UnknownError)
 		return

@@ -2,7 +2,6 @@
 package user
 
 import (
-	"fmt"
 	domainUser "tennet/gethired/domain/user"
 
 	"golang.org/x/crypto/bcrypt"
@@ -17,8 +16,9 @@ func (n *NewUser) toDomainMapper() *domainUser.User {
 	}
 }
 
-func (n UpdateUser) toDomainMapper() (updateDomain domainUser.User) {
-	fmt.Println("check ", n)
+func (n UpdateUser) toDomainMapper() domainUser.User {
+	updateDomain := domainUser.User{}
+
 	if n.UserName != nil {
 		updateDomain.UserName = *n.UserName
 	}

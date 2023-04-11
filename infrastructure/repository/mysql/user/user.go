@@ -76,7 +76,6 @@ func (r *Repository) Update(id int, updateUser *domainUser.User) (*domainUser.Us
 	err := r.DB.Model(&user).
 		Updates(updateUser).Error
 
-	// err = config.DB.Save(user).Error
 	if err != nil {
 		byteErr, _ := json.Marshal(err)
 		var newError domainError.GormErr

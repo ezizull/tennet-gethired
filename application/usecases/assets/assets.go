@@ -36,9 +36,7 @@ func (s *Service) GetByID(id int) (*assetDomain.Asset, error) {
 
 // Create is a function that creates a asset
 func (s *Service) Create(asset *NewAsset) (*assetDomain.Asset, error) {
-
 	assetModel := asset.toDomainMapper()
-
 	return s.AssetRepository.Create(assetModel)
 }
 
@@ -53,9 +51,7 @@ func (s *Service) Delete(id int) error {
 }
 
 // Update is a function that updates a asset by id
-func (s *Service) Update(id int64, asset *UpdateAsset) (*assetDomain.Asset, error) {
-
+func (s *Service) Update(id int64, asset UpdateAsset) (*assetDomain.Asset, error) {
 	assetModel := asset.toDomainMapper()
-
-	return s.AssetRepository.Update(id, assetModel)
+	return s.AssetRepository.Update(id, &assetModel)
 }

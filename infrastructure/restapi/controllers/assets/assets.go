@@ -155,17 +155,8 @@ func (c *Controller) UpdateAsset(ctx *gin.Context) {
 		return
 	}
 
-	updateAsset := useCaseAsset.UpdateAsset{
-		WalletID: request.WalletID,
-		Name:     request.Name,
-		Symbol:   request.Symbol,
-		Network:  request.Network,
-		Address:  request.Address,
-		Balance:  request.Balance,
-	}
-
 	var asset *domainAsset.Asset
-	asset, err = c.AssetService.Update(int64(assetID), &updateAsset)
+	asset, err = c.AssetService.Update(int64(assetID), updateToUsecaseMapper(&request))
 	if err != nil {
 		_ = ctx.Error(err)
 		return

@@ -20,7 +20,6 @@ func (s *Service) GetByID(id int) (*userDomain.User, error) {
 
 // Create is a function that creates a new user
 func (s *Service) Create(newUser NewUser) (*userDomain.User, error) {
-
 	domain := newUser.toDomainMapper()
 
 	hash, err := bcrypt.GenerateFromPassword([]byte(newUser.Password), bcrypt.DefaultCost)
@@ -45,6 +44,5 @@ func (s *Service) Delete(id int) error {
 // Update is a function that updates a user by id
 func (s *Service) Update(id int, updateUser UpdateUser) (*userDomain.User, error) {
 	domain := updateUser.toDomainMapper()
-
 	return s.UserRepository.Update(id, &domain)
 }
