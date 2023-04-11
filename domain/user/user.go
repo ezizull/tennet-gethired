@@ -11,7 +11,6 @@ type User struct {
 	FirstName    string
 	LastName     string
 	Status       bool
-	RoleID       string
 	HashPassword string
 	CreatedAt    time.Time
 	UpdatedAt    time.Time

@@ -12,7 +12,6 @@ type NewUser struct {
 	FirstName string
 	LastName  string
 	Password  string
-	RoleID    string
 }
 
 // PaginationResultUser is the structure for pagination result of user

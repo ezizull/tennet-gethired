@@ -731,7 +731,6 @@ const docTemplate = `{
                 "firstName",
                 "lastName",
                 "password",
-                "role_id",
                 "username"
             ],
             "properties": {
@@ -750,10 +749,6 @@ const docTemplate = `{
                 "password": {
                     "type": "string",
                     "example": "Password123"
-                },
-                "role_id": {
-                    "type": "string",
-                    "example": "admin"
                 },
                 "username": {
                     "type": "string",

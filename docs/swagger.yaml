@@ -127,9 +127,6 @@ definitions:
       password:
         example: Password123
         type: string
-      role_id:
-        example: admin
-        type: string
       username:
         example: someUser
         type: string
@@ -138,7 +135,6 @@ definitions:
     - firstName
     - lastName
     - password
-    - role_id
     - username
     type: object
   user.ResponseUser:

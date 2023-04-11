@@ -47,7 +47,6 @@ func updateValidation(request map[string]interface{}) (err error) {
 		"email":     "omitempty,gt=3,lt=100,email",
 		"firstName": "omitempty,gt=2,lt=100",
 		"lastName":  "omitempty,gt=2,lt=100",
-		"role_id":   "omitempty,gt=0,lt=100",
 	}
 
 	validate := validator.New()
@@ -120,11 +119,6 @@ func createValidation(request NewUserRequest) error {
 	// Last name must have minimum length of 2
 	if len(request.LastName) < 2 {
 		return errors.New("Last name must be at least 2 characters long")
-	}
-
-	// Role ID must not be empty
-	if len(request.RoleID) < 1 {
-		return errors.New("Role ID must not be empty")
 	}
 
 	return nil
