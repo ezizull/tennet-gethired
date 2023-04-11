@@ -19,8 +19,8 @@ func UserRoutes(router *gin.RouterGroup, controller *userController.Controller) 
 	// user routes with middleware validation
 	routerAuth.Use(middlewares.AuthJWTMiddleware())
 	{
-		routerAuth.GET("", controller.GetUsersByID)
+		routerAuth.GET("/:id", controller.GetUsersByID)
 		routerAuth.PATCH("/:id", controller.UpdateUser)
-		routerAuth.DELETE("", controller.DeleteUser)
+		routerAuth.DELETE("/:id", controller.DeleteUser)
 	}
 }
