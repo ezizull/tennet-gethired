@@ -1,5 +1,4 @@
-// Package book contains the book controller
-package book
+package assets
 
 // MessageResponse is a struct that contains the response body for the message
 type MessageResponse struct {
