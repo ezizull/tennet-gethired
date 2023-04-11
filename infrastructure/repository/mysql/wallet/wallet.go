@@ -92,6 +92,24 @@ func (r *Repository) GetByID(id int) (*domainWallet.Wallet, error) {
 	return wallet.toDomainMapper(), nil
 }
 
+// GetWithQuery ... Fetch only one wallet by Id
+func (r *Repository) GetWithQuery(id int) (*domainWallet.Wallet, error) {
+	var wallet Wallet
+	err := r.DB.Where("id = ?", id).First(&wallet).Error
+
+	if err != nil {
+		switch err.Error() {
+		case gorm.ErrRecordNotFound.Error():
+			err = domainError.NewAppErrorWithType(domainError.NotFound)
+		default:
+			err = domainError.NewAppErrorWithType(domainError.UnknownError)
+		}
+		return &domainWallet.Wallet{}, err
+	}
+
+	return wallet.toDomainMapper(), nil
+}
+
 // GetOneByMap ... Fetch only one wallet by Map
 func (r *Repository) GetOneByMap(mapWallet map[string]interface{}) (*domainWallet.Wallet, error) {
 	var wallet Wallet

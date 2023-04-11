@@ -36,10 +36,8 @@ func (c *Controller) NewTranserAsset(ctx *gin.Context) {
 	}
 
 	newTransaction := useCaseTransaction.NewAssetTransaction{
-		SrcWalletID:  request.SrcWalletID,
 		SrcAssetID:   request.SrcAssetID,
 		DestWalletID: request.DestWalletID,
-		DestAssetID:  request.DestAssetID,
 		Amount:       request.Amount,
 		GasFee:       request.GasFee,
 		Total:        request.Total,

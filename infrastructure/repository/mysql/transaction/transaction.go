@@ -40,6 +40,21 @@ func (r *Repository) Create(newTransaction *domainTransaction.AssetTransaction) 
 
 // Delete ... Delete transaction
 func (r *Repository) Delete(id int) (err error) {
+	tx := r.DB.Delete(&AssetTransaction{}, id)
+	if tx.Error != nil {
+		err = domainError.NewAppErrorWithType(domainError.UnknownError)
+		return
+	}
+
+	if tx.RowsAffected == 0 {
+		err = domainError.NewAppErrorWithType(domainError.NotFound)
+	}
+
+	return
+}
+
+// HardDelete ... Hard Delete transaction
+func (r *Repository) HardDelete(id int) (err error) {
 	tx := r.DB.Unscoped().Delete(&AssetTransaction{}, id)
 	if tx.Error != nil {
 		err = domainError.NewAppErrorWithType(domainError.UnknownError)

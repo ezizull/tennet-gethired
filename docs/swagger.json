@@ -781,19 +781,14 @@
             "type": "object",
             "required": [
                 "amount",
-                "dest_asset_id",
                 "dest_wallet_id",
                 "gas_fee",
                 "src_asset_id",
-                "src_wallet_id",
                 "total"
             ],
             "properties": {
                 "amount": {
                     "type": "number"
-                },
-                "dest_asset_id": {
-                    "type": "integer"
                 },
                 "dest_wallet_id": {
                     "type": "integer"

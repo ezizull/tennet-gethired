@@ -94,10 +94,10 @@ func (r *Repository) GetByID(id int) (*domainAsset.Asset, error) {
 }
 
 // GetOneByMap ... Fetch only one asset by Map
-func (r *Repository) GetOneByMap(updateAsset map[string]interface{}) (*domainAsset.Asset, error) {
+func (r *Repository) GetOneByMap(mapAsset map[string]interface{}) (*domainAsset.Asset, error) {
 	var asset Asset
 
-	err := r.DB.Where(updateAsset).Limit(1).Find(&asset).Error
+	err := r.DB.Where(mapAsset).Limit(1).Find(&asset).Error
 	if err != nil {
 		err = domainError.NewAppErrorWithType(domainError.UnknownError)
 		return nil, err
@@ -143,6 +143,21 @@ func (r *Repository) Update(id int64, updateAsset *domainAsset.Asset) (*domainAs
 // Delete ... Delete asset
 func (r *Repository) Delete(id int) (err error) {
 	tx := r.DB.Delete(&Asset{}, id)
+	if tx.Error != nil {
+		err = domainError.NewAppErrorWithType(domainError.UnknownError)
+		return
+	}
+
+	if tx.RowsAffected == 0 {
+		err = domainError.NewAppErrorWithType(domainError.NotFound)
+	}
+
+	return
+}
+
+// HardDelete ... Hard Delete asset
+func (r *Repository) HardDelete(id int) (err error) {
+	tx := r.DB.Unscoped().Delete(&Asset{}, id)
 	if tx.Error != nil {
 		err = domainError.NewAppErrorWithType(domainError.UnknownError)
 		return
