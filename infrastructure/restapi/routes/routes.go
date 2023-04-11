@@ -47,5 +47,8 @@ func ApplicationV1Router(router *gin.Engine, db *gorm.DB) {
 
 		// User Routes
 		UserRoutes(routerV1, adapter.UserAdapter(db))
+
+		// Asset Routes
+		AssetRoutes(routerV1, adapter.AssetAdapter(db))
 	}
 }

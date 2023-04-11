@@ -1,6 +1,6 @@
 package book
 
-// Package medicine provides the use case for medicine
+// Package  provides the use case for
 
 import (
 	domainBook "tennet/gethired/domain/book"

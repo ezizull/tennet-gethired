@@ -23,12 +23,12 @@ var rootCmd = &cobra.Command{
 
 // Execute adds all child commands to the root command and sets flags appropriately.
 // This is called by main.main(). It only needs to happen once to the rootCmd.
-func Execute(postgres *gorm.DB) {
+func Execute(mysql *gorm.DB) {
 	// set migrating database
-	migrate.SetMigrateDB(postgres)
+	migrate.SetMigrateDB(mysql)
 
-	// postgres migrating flag
-	rootCmd.AddCommand(migrate.PostgresCmd)
+	// mysql migrating flag
+	rootCmd.AddCommand(migrate.MysqlCmd)
 
 	if err := rootCmd.Execute(); err != nil {
 		os.Exit(1)

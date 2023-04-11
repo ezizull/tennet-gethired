@@ -8,17 +8,17 @@ import (
 )
 
 var (
-	Postgres bool
+	Mysql bool
 )
 
-// PostgresCmd represents the mysql command
-var PostgresCmd = &cobra.Command{
+// MysqlCmd represents the mysql command
+var MysqlCmd = &cobra.Command{
 	Use:   "mysql",
 	Short: "Migrate PostgreSQL database",
 	Long:  `The mysql command is used to migrate the PostgreSQL database to its latest schema version`,
 	Run: func(cmd *cobra.Command, args []string) {
-		if Postgres {
-			err := mysql.MigrateMysql(PostgresDB)
+		if Mysql {
+			err := mysql.MigrateMysql(MysqlDB)
 			if err != nil {
 				_ = fmt.Errorf("fatal error in migrating mysql: %s", err)
 				panic(err)
@@ -32,5 +32,5 @@ var PostgresCmd = &cobra.Command{
 
 func init() {
 	// migrating flag
-	PostgresCmd.PersistentFlags().BoolVarP(&Postgres, "migrate", "m", false, "perform database migration")
+	MysqlCmd.PersistentFlags().BoolVarP(&Mysql, "migrate", "m", false, "perform database migration")
 }

@@ -9,7 +9,7 @@ import (
 	"gorm.io/gorm"
 )
 
-// Repository is a struct that contains the database implementation for medicine entity
+// Repository is a struct that contains the database implementation for  entity
 type Repository struct {
 	DB *gorm.DB
 }

@@ -2,9 +2,9 @@ package migrate
 
 import "gorm.io/gorm"
 
-var PostgresDB *gorm.DB
+var MysqlDB *gorm.DB
 
-// SetMigrateDB sets the postgresDB instance for the cmd package
-func SetMigrateDB(postgres *gorm.DB) {
-	PostgresDB = postgres
+// SetMigrateDB sets the mysqlDB instance for the cmd package
+func SetMigrateDB(mysql *gorm.DB) {
+	MysqlDB = mysql
 }

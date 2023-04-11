@@ -6,6 +6,7 @@ import (
 	"os"
 	"time"
 
+	assetStruct "tennet/gethired/infrastructure/repository/mysql/assets"
 	userStruct "tennet/gethired/infrastructure/repository/mysql/user"
 
 	// driver mysql on this implementation
@@ -96,7 +97,7 @@ func initMysqlDB(inGormDB *gorm.DB, infoPg infoDatabaseMySQL) (*gorm.DB, error) 
 
 func MigrateMysql(inGormDB *gorm.DB) error {
 	tablesMigrate := []interface{}{
-
+		&assetStruct.Asset{},
 		&userStruct.User{},
 	}
 
