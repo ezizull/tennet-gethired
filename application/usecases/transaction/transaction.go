@@ -16,7 +16,8 @@ type Service struct {
 
 // NewTransferAsset is a function that transfer between asset using wallet id
 func (s *Service) NewTransferAsset(newTrans *NewAssetTransaction) (*domainTransaction.AssetTransaction, error) {
-	getAsset, err := s.AssetRepository.GetByID(int(newTrans.SrcAssetID))
+	transMap := map[string]interface{}{"id": newTrans.SrcAssetID, "wallet_id": newTrans.SrcWalletID}
+	getAsset, err := s.AssetRepository.GetOneByMap(transMap)
 	if err != nil {
 		return nil, err
 	}
@@ -26,16 +27,16 @@ func (s *Service) NewTransferAsset(newTrans *NewAssetTransaction) (*domainTransa
 		return nil, err
 	}
 
-	domainTrans := newTrans.toDomainMapper()
-	transaction, err := s.TransactionRepository.Create(domainTrans)
+	domainAsset := newTrans.toDomainAssetMapper(getAsset)
+	_, err = s.AssetRepository.Create(domainAsset)
 	if err != nil {
 		return nil, err
 	}
 
-	domainAsset := newTrans.toDomainAssetMapper(getAsset)
-	_, err = s.AssetRepository.Create(domainAsset)
+	domainTrans := newTrans.toDomainMapper()
+	transaction, err := s.TransactionRepository.Create(domainTrans)
 	if err != nil {
-		err = s.AssetRepository.Delete(int(transaction.ID))
+		err = s.AssetRepository.Delete(int(newTrans.DestAssetID))
 		if err != nil {
 			return nil, err
 		}

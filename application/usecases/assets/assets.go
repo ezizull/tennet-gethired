@@ -3,11 +3,13 @@ package assets
 import (
 	assetDomain "tennet/gethired/domain/assets"
 	assetsRepository "tennet/gethired/infrastructure/repository/mysql/assets"
+	walletRepository "tennet/gethired/infrastructure/repository/mysql/wallet"
 )
 
 // Service is a struct that contains the repository implementation for assets use case
 type Service struct {
-	AssetRepository assetsRepository.Repository
+	AssetRepository  assetsRepository.Repository
+	WalletRepository walletRepository.Repository
 }
 
 // GetAll is a function that returns all assets
@@ -36,6 +38,11 @@ func (s *Service) GetByID(id int) (*assetDomain.Asset, error) {
 
 // Create is a function that creates a asset
 func (s *Service) Create(asset *NewAsset) (*assetDomain.Asset, error) {
+	_, err := s.WalletRepository.GetByID((int(asset.WalletID)))
+	if err != nil {
+		return nil, err
+	}
+
 	assetModel := asset.toDomainMapper()
 	return s.AssetRepository.Create(assetModel)
 }
@@ -52,6 +59,11 @@ func (s *Service) Delete(id int) error {
 
 // Update is a function that updates a asset by id
 func (s *Service) Update(id int64, asset UpdateAsset) (*assetDomain.Asset, error) {
+	_, err := s.WalletRepository.GetByID((int(*asset.WalletID)))
+	if err != nil {
+		return nil, err
+	}
+
 	assetModel := asset.toDomainMapper()
 	return s.AssetRepository.Update(id, &assetModel)
 }
