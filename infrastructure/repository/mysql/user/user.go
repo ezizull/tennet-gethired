@@ -69,13 +69,12 @@ func (r *Repository) GetByID(id int) (*domainUser.User, error) {
 }
 
 // Update ... Update user
-func (r *Repository) Update(id int, userMap map[string]interface{}) (*domainUser.User, error) {
+func (r *Repository) Update(id int, updateUser *domainUser.User) (*domainUser.User, error) {
 	var user User
 
 	user.ID = id
 	err := r.DB.Model(&user).
-		Select("user", "email", "firstName", "lastName").
-		Updates(userMap).Error
+		Updates(updateUser).Error
 
 	// err = config.DB.Save(user).Error
 	if err != nil {

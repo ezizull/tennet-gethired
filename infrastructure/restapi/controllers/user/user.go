@@ -102,21 +102,22 @@ func (c *Controller) UpdateUser(ctx *gin.Context) {
 		_ = ctx.Error(appError)
 		return
 	}
-	var requestMap map[string]interface{}
 
-	err = controllers.BindJSONMap(ctx, &requestMap)
-	if err != nil {
+	var request UpdateUserRequest
+
+	if err := controllers.BindJSON(ctx, &request); err != nil {
 		appError := domainErrors.NewAppError(err, domainErrors.ValidationError)
 		_ = ctx.Error(appError)
 		return
 	}
-	err = updateValidation(requestMap)
+
+	err = updateValidation(&request)
 	if err != nil {
 		_ = ctx.Error(err)
 		return
 	}
 
-	user, err := c.UserService.Update(userID, requestMap)
+	user, err := c.UserService.Update(userID, updateToUsecaseMapper(&request))
 	if err != nil {
 		_ = ctx.Error(err)
 		return

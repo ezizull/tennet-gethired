@@ -14,6 +14,15 @@ type NewUser struct {
 	Password  string
 }
 
+// UpdateUser is a structure for the update user
+type UpdateUser struct {
+	UserName  *string
+	Email     *string
+	FirstName *string
+	LastName  *string
+	Password  *string
+}
+
 // PaginationResultUser is the structure for pagination result of user
 type PaginationResultUser struct {
 	Data       []domainUser.User

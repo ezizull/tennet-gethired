@@ -26,3 +26,30 @@ func toUsecaseMapper(user *NewUserRequest) userUseCase.NewUser {
 	return userUseCase.NewUser{UserName: user.UserName, Password: user.Password, Email: user.Email, FirstName: user.FirstName, LastName: user.LastName}
 
 }
+
+func updateToUsecaseMapper(user *UpdateUserRequest) userUseCase.UpdateUser {
+	updateUsecase := userUseCase.UpdateUser{}
+
+	if user.UserName != nil {
+		updateUsecase.UserName = user.UserName
+	}
+
+	if user.Password != nil {
+		updateUsecase.Password = user.Password
+	}
+
+	if user.Email != nil {
+		updateUsecase.Email = user.Email
+	}
+
+	if user.FirstName != nil {
+		updateUsecase.FirstName = user.FirstName
+	}
+
+	if user.LastName != nil {
+		updateUsecase.LastName = user.LastName
+	}
+
+	return updateUsecase
+
+}

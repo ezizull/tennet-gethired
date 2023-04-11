@@ -21,10 +21,10 @@ func updateValidation(assetBody *UpdateAssetRequest) (err error) {
 	return
 }
 
-func createValidation(assetBody *UpdateAssetRequest) (err error) {
+func createValidation(assetBody *NewAssetRequest) (err error) {
 	var errorsValidation []string
 
-	if *assetBody.WalletID == 0 {
+	if assetBody.WalletID == 0 {
 		err = domainErrors.NewAppError(errors.New("Wallet ID NotFound"), domainErrors.NotFound)
 		return
 	}
