@@ -741,6 +741,35 @@ const docTemplate = `{
                 }
             }
         },
+        "tennet_gethired_domain_transaction.AssetTransaction": {
+            "type": "object",
+            "properties": {
+                "amount": {
+                    "type": "number"
+                },
+                "dest_asset_id": {
+                    "type": "integer"
+                },
+                "dest_wallet_id": {
+                    "type": "integer"
+                },
+                "gas_fee": {
+                    "type": "number"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "src_asset_id": {
+                    "type": "integer"
+                },
+                "src_wallet_id": {
+                    "type": "integer"
+                },
+                "total": {
+                    "type": "number"
+                }
+            }
+        },
         "tennet_gethired_domain_wallet.Wallet": {
             "type": "object",
             "properties": {
@@ -749,6 +778,49 @@ const docTemplate = `{
                 },
                 "name": {
                     "type": "string"
+                }
+            }
+        },
+        "transaction.MessageResponse": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "transaction.NewTranserAssetRequest": {
+            "type": "object",
+            "required": [
+                "amount",
+                "dest_asset_id",
+                "dest_wallet_id",
+                "gas_fee",
+                "src_asset_id",
+                "src_wallet_id",
+                "total"
+            ],
+            "properties": {
+                "amount": {
+                    "type": "number"
+                },
+                "dest_asset_id": {
+                    "type": "integer"
+                },
+                "dest_wallet_id": {
+                    "type": "integer"
+                },
+                "gas_fee": {
+                    "type": "number"
+                },
+                "src_asset_id": {
+                    "type": "integer"
+                },
+                "src_wallet_id": {
+                    "type": "integer"
+                },
+                "total": {
+                    "type": "number"
                 }
             }
         },

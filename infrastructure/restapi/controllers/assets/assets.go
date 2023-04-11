@@ -37,6 +37,7 @@ func (c *Controller) NewAsset(ctx *gin.Context) {
 		_ = ctx.Error(appError)
 		return
 	}
+
 	newAsset := useCaseAsset.NewAsset{
 		WalletID: request.WalletID,
 		Name:     request.Name,

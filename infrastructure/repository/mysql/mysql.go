@@ -7,6 +7,7 @@ import (
 	"time"
 
 	assetStruct "tennet/gethired/infrastructure/repository/mysql/assets"
+	transactionStruct "tennet/gethired/infrastructure/repository/mysql/transaction"
 	userStruct "tennet/gethired/infrastructure/repository/mysql/user"
 	walletStruct "tennet/gethired/infrastructure/repository/mysql/wallet"
 
@@ -101,6 +102,7 @@ func MigrateMysql(inGormDB *gorm.DB) error {
 		&userStruct.User{},
 		&walletStruct.Wallet{},
 		&assetStruct.Asset{},
+		&transactionStruct.AssetTransaction{},
 	}
 
 	err := inGormDB.AutoMigrate(tablesMigrate...)

@@ -6,7 +6,7 @@ import (
 	"github.com/shopspring/decimal"
 )
 
-// NewAssetRequest is a struct that contains the new asset request information
+// NewAsset is a struct that contains the new asset request information
 type NewAsset struct {
 	WalletID int64           `json:"wallet_id"`
 	Name     string          `json:"name"`

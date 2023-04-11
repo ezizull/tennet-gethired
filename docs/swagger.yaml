@@ -124,12 +124,61 @@ definitions:
       wallet_id:
         type: integer
     type: object
+  tennet_gethired_domain_transaction.AssetTransaction:
+    properties:
+      amount:
+        type: number
+      dest_asset_id:
+        type: integer
+      dest_wallet_id:
+        type: integer
+      gas_fee:
+        type: number
+      id:
+        type: integer
+      src_asset_id:
+        type: integer
+      src_wallet_id:
+        type: integer
+      total:
+        type: number
+    type: object
   tennet_gethired_domain_wallet.Wallet:
     properties:
       id:
         type: integer
       name:
         type: string
+    type: object
+  transaction.MessageResponse:
+    properties:
+      message:
+        type: string
+    type: object
+  transaction.NewTranserAssetRequest:
+    properties:
+      amount:
+        type: number
+      dest_asset_id:
+        type: integer
+      dest_wallet_id:
+        type: integer
+      gas_fee:
+        type: number
+      src_asset_id:
+        type: integer
+      src_wallet_id:
+        type: integer
+      total:
+        type: number
+    required:
+    - amount
+    - dest_asset_id
+    - dest_wallet_id
+    - gas_fee
+    - src_asset_id
+    - src_wallet_id
+    - total
     type: object
   user.MessageResponse:
     properties:
