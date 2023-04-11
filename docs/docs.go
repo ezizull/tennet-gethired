@@ -626,10 +626,6 @@ const docTemplate = `{
                     "type": "string",
                     "example": "Doe"
                 },
-                "status": {
-                    "type": "boolean",
-                    "example": true
-                },
                 "userName": {
                     "type": "string",
                     "example": "UserName"
@@ -778,10 +774,6 @@ const docTemplate = `{
                 "lastName": {
                     "type": "string",
                     "example": "Doe"
-                },
-                "status": {
-                    "type": "boolean",
-                    "example": false
                 },
                 "updatedAt": {
                     "type": "string",

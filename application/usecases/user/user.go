@@ -28,7 +28,6 @@ func (s *Service) Create(newUser NewUser) (*userDomain.User, error) {
 		return &userDomain.User{}, err
 	}
 	domain.HashPassword = string(hash)
-	domain.Status = true
 
 	return s.UserRepository.Create(domain)
 }

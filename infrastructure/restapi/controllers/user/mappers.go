@@ -9,7 +9,7 @@ import (
 func domainToResponseMapper(userDomain *userDomain.User) (createUserResponse *ResponseUser) {
 	createUserResponse = &ResponseUser{ID: userDomain.ID, UserName: userDomain.UserName,
 		Email: userDomain.Email, FirstName: userDomain.FirstName, LastName: userDomain.LastName,
-		Status: userDomain.Status, CreatedAt: userDomain.CreatedAt, UpdatedAt: userDomain.UpdatedAt}
+		CreatedAt: userDomain.CreatedAt, UpdatedAt: userDomain.UpdatedAt}
 
 	return
 }

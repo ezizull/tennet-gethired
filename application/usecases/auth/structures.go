@@ -18,7 +18,6 @@ type DataUserAuthenticated struct {
 	Email     string `json:"email" example:"some@mail.com" gorm:"unique"`
 	FirstName string `json:"firstName" example:"John"`
 	LastName  string `json:"lastName" example:"Doe"`
-	Status    bool   `json:"status" example:"1"`
 }
 
 // DataSecurityAuthenticated is a struct that contains the security data for the authenticated user

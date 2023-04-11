@@ -614,10 +614,6 @@
                     "type": "string",
                     "example": "Doe"
                 },
-                "status": {
-                    "type": "boolean",
-                    "example": true
-                },
                 "userName": {
                     "type": "string",
                     "example": "UserName"
@@ -766,10 +762,6 @@
                 "lastName": {
                     "type": "string",
                     "example": "Doe"
-                },
-                "status": {
-                    "type": "boolean",
-                    "example": false
                 },
                 "updatedAt": {
                     "type": "string",

@@ -48,9 +48,6 @@ definitions:
       lastName:
         example: Doe
         type: string
-      status:
-        example: true
-        type: boolean
       userName:
         example: UserName
         type: string
@@ -154,9 +151,6 @@ definitions:
       lastName:
         example: Doe
         type: string
-      status:
-        example: false
-        type: boolean
       updatedAt:
         example: "2021-02-24 20:19:39"
         type: string

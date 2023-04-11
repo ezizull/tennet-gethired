@@ -13,7 +13,6 @@ func secAuthUserMapper(domainUser *userDomain.User, authInfo *Auth) *SecurityAut
 			FirstName: domainUser.FirstName,
 			LastName:  domainUser.LastName,
 			ID:        domainUser.ID,
-			Status:    domainUser.Status,
 		},
 		Security: DataSecurityAuthenticated{
 			JWTAccessToken:            authInfo.AccessToken,
