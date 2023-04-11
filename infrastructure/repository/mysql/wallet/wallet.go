@@ -93,10 +93,10 @@ func (r *Repository) GetByID(id int) (*domainWallet.Wallet, error) {
 }
 
 // GetOneByMap ... Fetch only one wallet by Map
-func (r *Repository) GetOneByMap(updateWallet map[string]interface{}) (*domainWallet.Wallet, error) {
+func (r *Repository) GetOneByMap(mapWallet map[string]interface{}) (*domainWallet.Wallet, error) {
 	var wallet Wallet
 
-	err := r.DB.Where(updateWallet).Limit(1).Find(&wallet).Error
+	err := r.DB.Where(mapWallet).Limit(1).Find(&wallet).Error
 	if err != nil {
 		err = domainErrors.NewAppErrorWithType(domainErrors.UnknownError)
 		return nil, err

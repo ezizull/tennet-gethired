@@ -14,7 +14,7 @@ var (
 // MysqlCmd represents the mysql command
 var MysqlCmd = &cobra.Command{
 	Use:   "mysql",
-	Short: "Migrate PostgreSQL database",
+	Short: "Migrate MySQL database",
 	Long:  `The mysql command is used to migrate the PostgreSQL database to its latest schema version`,
 	Run: func(cmd *cobra.Command, args []string) {
 		if Mysql {
