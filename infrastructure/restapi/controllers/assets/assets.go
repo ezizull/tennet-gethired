@@ -26,6 +26,7 @@ type Controller struct {
 // @Param data body NewAssetRequest true "body data"
 // @Success 200 {object} domainAsset.Asset
 // @Failure 400 {object} MessageResponse
+// @Failure 401 {object} MessageResponse
 // @Failure 500 {object} MessageResponse
 // @Router /asset [post]
 func (c *Controller) NewAsset(ctx *gin.Context) {
@@ -62,6 +63,7 @@ func (c *Controller) NewAsset(ctx *gin.Context) {
 // @Param   page  query   string  true        "page"
 // @Success 200 {object} []useCaseAsset.PaginationResultAsset
 // @Failure 400 {object} MessageResponse
+// @Failure 401 {object} MessageResponse
 // @Failure 500 {object} MessageResponse
 // @Router /asset [get]
 func (c *Controller) GetAllAsset(ctx *gin.Context) {
@@ -97,6 +99,8 @@ func (c *Controller) GetAllAsset(ctx *gin.Context) {
 // @Param asset_id path int true "id of asset"
 // @Success 200 {object} domainAsset.Asset
 // @Failure 400 {object} MessageResponse
+// @Failure 401 {object} MessageResponse
+// @Failure 404 {object} MessageResponse
 // @Failure 500 {object} MessageResponse
 // @Router /asset/{asset_id} [get]
 func (c *Controller) GetAssetByID(ctx *gin.Context) {
@@ -117,7 +121,17 @@ func (c *Controller) GetAssetByID(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, domainAsset)
 }
 
-// UpdateAsset is the controller to update a asset
+// UpdateAsset godoc
+// @Tags asset
+// @Summary Get assets by ID
+// @Descriptioniption Get Assets by ID on the system
+// @Param asset_id path int true "id of asset"
+// @Success 200 {object} domainAsset.Asset
+// @Failure 400 {object} MessageResponse
+// @Failure 401 {object} MessageResponse
+// @Failure 404 {object} MessageResponse
+// @Failure 500 {object} MessageResponse
+// @Router /asset/{asset_id} [patch]
 func (c *Controller) UpdateAsset(ctx *gin.Context) {
 
 	assetID, err := strconv.ParseUint(ctx.Param("id"), 10, 64)
@@ -161,7 +175,17 @@ func (c *Controller) UpdateAsset(ctx *gin.Context) {
 
 }
 
-// DeleteAsset is the controller to delete a asset
+// DeleteAsset godoc
+// @Tags asset
+// @Summary Get assets by ID
+// @Descriptioniption Get Assets by ID on the system
+// @Param asset_id path int true "id of asset"
+// @Success 200 {object} domainAsset.Asset
+// @Failure 400 {object} MessageResponse
+// @Failure 401 {object} MessageResponse
+// @Failure 404 {object} MessageResponse
+// @Failure 500 {object} MessageResponse
+// @Router /asset/{asset_id} [delete]
 func (c *Controller) DeleteAsset(ctx *gin.Context) {
 	assetID, err := strconv.Atoi(ctx.Param("id"))
 	if err != nil {

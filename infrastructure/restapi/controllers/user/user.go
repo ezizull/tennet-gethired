@@ -91,8 +91,10 @@ func (c *Controller) GetUsersByID(ctx *gin.Context) {
 // @Security ApiKeyAuth
 // @Success 200 {object} ResponseUser
 // @Failure 400 {object} MessageResponse
+// @Failure 401 {object} MessageResponse
+// @Failure 404 {object} MessageResponse
 // @Failure 500 {object} MessageResponse
-// @Router /user/{user_id} [get]
+// @Router /user/{user_id} [patch]
 func (c *Controller) UpdateUser(ctx *gin.Context) {
 	userID, err := strconv.Atoi(ctx.Param("id"))
 	if err != nil {
@@ -131,8 +133,10 @@ func (c *Controller) UpdateUser(ctx *gin.Context) {
 // @Security ApiKeyAuth
 // @Success 200 {object} MessageResponse
 // @Failure 400 {object} MessageResponse
+// @Failure 401 {object} MessageResponse
+// @Failure 404 {object} MessageResponse
 // @Failure 500 {object} MessageResponse
-// @Router /user/{user_id} [get]
+// @Router /user/{user_id} [delete]
 func (c *Controller) DeleteUser(ctx *gin.Context) {
 	userID, err := strconv.Atoi(ctx.Param("id"))
 	if err != nil {

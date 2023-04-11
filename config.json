@@ -1,27 +1,11 @@
 {
-  "Environment": "production",
+  "Environment": "development",
   "ServerPort": 4000,
-  "Services": {
-    "RabbitMq": "amqp://user:pass@host:5672",
-    "SendGrid": {
-      "url": "https://api.sendgrid.com/v3/ ",
-      "TemplatesID": {
-        "FancyMail": "d-hash-id"
-      }
-    },
-    "OtherService": "https://dominio.com/"
-  },
   "Secure": {
     "JWTAccessSecure": "accesskeyyoumayneedtochangeit",
     "JWTRefreshSecure": "refreshkeyyoumayneedtochangeit",
     "JWTAccessTimeMinute": 10,
     "JWTRefreshTimeHour": 10
-  },
-  "Endpoints": {
-    "SiteExample": "http://localhost:8080/"
-  },
-  "Tools": {
-    "WkhtmltopdfBin": "/opt/bin/wkhtmltopdf"
   },
   "Databases": {
     "MySQL": {

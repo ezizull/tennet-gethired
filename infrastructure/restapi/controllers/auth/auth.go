@@ -22,6 +22,7 @@ type Controller struct {
 // @Param data body LoginRequest true "body data"
 // @Success 200 {object} useCaseAuth.DataUserAuthenticated
 // @Failure 400 {object} controllers.MessageResponse
+// @Failure 401 {object} controllers.MessageResponse
 // @Failure 500 {object} controllers.MessageResponse
 // @Router /auth/login [post]
 func (c *Controller) Login(ctx *gin.Context) {
@@ -52,6 +53,7 @@ func (c *Controller) Login(ctx *gin.Context) {
 // @Param data body AccessTokenRequest true "body data"
 // @Success 200 {object} useCaseAuth.DataUserAuthenticated
 // @Failure 400 {object} controllers.MessageResponse
+// @Failure 401 {object} controllers.MessageResponse
 // @Failure 500 {object} controllers.MessageResponse
 // @Router /auth/access-token [post]
 func (c *Controller) GetAccessTokenByRefreshToken(ctx *gin.Context) {

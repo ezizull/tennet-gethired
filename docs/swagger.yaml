@@ -196,6 +196,10 @@ paths:
           description: Bad Request
           schema:
             $ref: '#/definitions/assets.MessageResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/assets.MessageResponse'
         "500":
           description: Internal Server Error
           schema:
@@ -224,6 +228,10 @@ paths:
           description: Bad Request
           schema:
             $ref: '#/definitions/assets.MessageResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/assets.MessageResponse'
         "500":
           description: Internal Server Error
           schema:
@@ -232,6 +240,37 @@ paths:
       tags:
       - asset
   /asset/{asset_id}:
+    delete:
+      parameters:
+      - description: id of asset
+        in: path
+        name: asset_id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/tennet_gethired_domain_assets.Asset'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/assets.MessageResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/assets.MessageResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/assets.MessageResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/assets.MessageResponse'
+      summary: Get assets by ID
+      tags:
+      - asset
     get:
       parameters:
       - description: id of asset
@@ -246,6 +285,45 @@ paths:
             $ref: '#/definitions/tennet_gethired_domain_assets.Asset'
         "400":
           description: Bad Request
+          schema:
+            $ref: '#/definitions/assets.MessageResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/assets.MessageResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/assets.MessageResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/assets.MessageResponse'
+      summary: Get assets by ID
+      tags:
+      - asset
+    patch:
+      parameters:
+      - description: id of asset
+        in: path
+        name: asset_id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/tennet_gethired_domain_assets.Asset'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/assets.MessageResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/assets.MessageResponse'
+        "404":
+          description: Not Found
           schema:
             $ref: '#/definitions/assets.MessageResponse'
         "500":
@@ -274,6 +352,10 @@ paths:
           description: Bad Request
           schema:
             $ref: '#/definitions/controllers.MessageResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/controllers.MessageResponse'
         "500":
           description: Internal Server Error
           schema:
@@ -298,6 +380,10 @@ paths:
             $ref: '#/definitions/auth.DataUserAuthenticated'
         "400":
           description: Bad Request
+          schema:
+            $ref: '#/definitions/controllers.MessageResponse'
+        "401":
+          description: Unauthorized
           schema:
             $ref: '#/definitions/controllers.MessageResponse'
         "500":
@@ -340,7 +426,7 @@ paths:
       tags:
       - user
   /user/{user_id}:
-    get:
+    delete:
       description: Get Users by ID on the system
       parameters:
       - description: id of user
@@ -355,6 +441,74 @@ paths:
             $ref: '#/definitions/user.MessageResponse'
         "400":
           description: Bad Request
+          schema:
+            $ref: '#/definitions/user.MessageResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/user.MessageResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/user.MessageResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/user.MessageResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Get users by ID
+      tags:
+      - user
+    get:
+      description: Get Users by ID on the system
+      parameters:
+      - description: id of user
+        in: path
+        name: user_id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/user.ResponseUser'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/user.MessageResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/user.MessageResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Get users by ID
+      tags:
+      - user
+    patch:
+      description: Get Users by ID on the system
+      parameters:
+      - description: id of user
+        in: path
+        name: user_id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/user.ResponseUser'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/user.MessageResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/user.MessageResponse'
+        "404":
+          description: Not Found
           schema:
             $ref: '#/definitions/user.MessageResponse'
         "500":

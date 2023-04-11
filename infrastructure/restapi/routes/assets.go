@@ -15,7 +15,7 @@ func AssetRoutes(router *gin.RouterGroup, controller *assetsController.Controlle
 		routerAsset.GET("", controller.GetAllAsset)
 		routerAsset.GET("/:id", controller.GetAssetByID)
 		routerAsset.POST("", controller.NewAsset)
-		routerAsset.PUT("/:id", controller.UpdateAsset)
+		routerAsset.PATCH("/:id", controller.UpdateAsset)
 		routerAsset.DELETE("/:id", controller.DeleteAsset)
 	}
 }
