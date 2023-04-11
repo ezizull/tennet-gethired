@@ -8,6 +8,7 @@ import (
 
 	assetStruct "tennet/gethired/infrastructure/repository/mysql/assets"
 	userStruct "tennet/gethired/infrastructure/repository/mysql/user"
+	walletStruct "tennet/gethired/infrastructure/repository/mysql/wallet"
 
 	// driver mysql on this implementation
 	_ "github.com/go-sql-driver/mysql"
@@ -97,8 +98,9 @@ func initMysqlDB(inGormDB *gorm.DB, infoPg infoDatabaseMySQL) (*gorm.DB, error) 
 
 func MigrateMysql(inGormDB *gorm.DB) error {
 	tablesMigrate := []interface{}{
-		&assetStruct.Asset{},
 		&userStruct.User{},
+		&walletStruct.Wallet{},
+		&assetStruct.Asset{},
 	}
 
 	err := inGormDB.AutoMigrate(tablesMigrate...)

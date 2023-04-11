@@ -50,5 +50,8 @@ func ApplicationV1Router(router *gin.Engine, db *gorm.DB) {
 
 		// Asset Routes
 		AssetRoutes(routerV1, adapter.AssetAdapter(db))
+
+		// Wallet Routes
+		WalletRoutes(routerV1, adapter.WalletAdapter(db))
 	}
 }

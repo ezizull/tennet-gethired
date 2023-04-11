@@ -7,7 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// UserRoutes is a function that contains all routes of the assets
+// AssetRoutes is a function that contains all routes of the assets
 func AssetRoutes(router *gin.RouterGroup, controller *assetsController.Controller) {
 	routerAsset := router.Group("/assets")
 	routerAsset.Use(middlewares.AuthJWTMiddleware())
