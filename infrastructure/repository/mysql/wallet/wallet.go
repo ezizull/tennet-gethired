@@ -2,7 +2,7 @@ package wallet
 
 import (
 	"encoding/json"
-	domainErrors "tennet/gethired/domain/errors"
+	domainError "tennet/gethired/domain/errors"
 	domainWallet "tennet/gethired/domain/wallet"
 
 	"gorm.io/gorm"
@@ -56,16 +56,16 @@ func (r *Repository) Create(newWallet *domainWallet.Wallet) (createdWallet *doma
 
 	if tx.Error != nil {
 		byteErr, _ := json.Marshal(tx.Error)
-		var newError domainErrors.GormErr
+		var newError domainError.GormErr
 		err = json.Unmarshal(byteErr, &newError)
 		if err != nil {
 			return
 		}
 		switch newError.Number {
 		case 1062:
-			err = domainErrors.NewAppErrorWithType(domainErrors.ResourceAlreadyExists)
+			err = domainError.NewAppErrorWithType(domainError.ResourceAlreadyExists)
 		default:
-			err = domainErrors.NewAppErrorWithType(domainErrors.UnknownError)
+			err = domainError.NewAppErrorWithType(domainError.UnknownError)
 		}
 		return
 	}
@@ -82,9 +82,9 @@ func (r *Repository) GetByID(id int) (*domainWallet.Wallet, error) {
 	if err != nil {
 		switch err.Error() {
 		case gorm.ErrRecordNotFound.Error():
-			err = domainErrors.NewAppErrorWithType(domainErrors.NotFound)
+			err = domainError.NewAppErrorWithType(domainError.NotFound)
 		default:
-			err = domainErrors.NewAppErrorWithType(domainErrors.UnknownError)
+			err = domainError.NewAppErrorWithType(domainError.UnknownError)
 		}
 		return &domainWallet.Wallet{}, err
 	}
@@ -98,7 +98,7 @@ func (r *Repository) GetOneByMap(mapWallet map[string]interface{}) (*domainWalle
 
 	err := r.DB.Where(mapWallet).Limit(1).Find(&wallet).Error
 	if err != nil {
-		err = domainErrors.NewAppErrorWithType(domainErrors.UnknownError)
+		err = domainError.NewAppErrorWithType(domainError.UnknownError)
 		return nil, err
 	}
 	return wallet.toDomainMapper(), err
@@ -114,18 +114,18 @@ func (r *Repository) Update(id int64, updateWallet *domainWallet.Wallet) (*domai
 
 	if err != nil {
 		byteErr, _ := json.Marshal(err)
-		var newError domainErrors.GormErr
+		var newError domainError.GormErr
 		err = json.Unmarshal(byteErr, &newError)
 		if err != nil {
 			return &domainWallet.Wallet{}, err
 		}
 		switch newError.Number {
 		case 1062:
-			err = domainErrors.NewAppErrorWithType(domainErrors.ResourceAlreadyExists)
+			err = domainError.NewAppErrorWithType(domainError.ResourceAlreadyExists)
 			return &domainWallet.Wallet{}, err
 
 		default:
-			err = domainErrors.NewAppErrorWithType(domainErrors.UnknownError)
+			err = domainError.NewAppErrorWithType(domainError.UnknownError)
 			return &domainWallet.Wallet{}, err
 		}
 	}
@@ -139,12 +139,12 @@ func (r *Repository) Update(id int64, updateWallet *domainWallet.Wallet) (*domai
 func (r *Repository) Delete(id int) (err error) {
 	tx := r.DB.Delete(&Wallet{}, id)
 	if tx.Error != nil {
-		err = domainErrors.NewAppErrorWithType(domainErrors.UnknownError)
+		err = domainError.NewAppErrorWithType(domainError.UnknownError)
 		return
 	}
 
 	if tx.RowsAffected == 0 {
-		err = domainErrors.NewAppErrorWithType(domainErrors.NotFound)
+		err = domainError.NewAppErrorWithType(domainError.NotFound)
 	}
 
 	return

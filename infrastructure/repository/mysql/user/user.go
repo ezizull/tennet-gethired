@@ -94,6 +94,10 @@ func (r *Repository) Update(id int, updateUser *domainUser.User) (*domainUser.Us
 	}
 
 	err = r.DB.Where("id = ?", id).First(&user).Error
+	if err != nil {
+		err = domainError.NewAppErrorWithType(domainError.NotFound)
+		return &domainUser.User{}, err
+	}
 
 	return user.toDomainMapper(), err
 }

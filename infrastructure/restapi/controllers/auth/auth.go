@@ -4,7 +4,7 @@ package auth
 import (
 	"net/http"
 	useCaseAuth "tennet/gethired/application/usecases/auth"
-	domainErrors "tennet/gethired/domain/errors"
+	domainError "tennet/gethired/domain/errors"
 	"tennet/gethired/infrastructure/restapi/controllers"
 
 	"github.com/gin-gonic/gin"
@@ -29,7 +29,7 @@ func (c *Controller) Login(ctx *gin.Context) {
 	var request LoginRequest
 
 	if err := controllers.BindJSON(ctx, &request); err != nil {
-		appError := domainErrors.NewAppError(err, domainErrors.ValidationError)
+		appError := domainError.NewAppError(err, domainError.ValidationError)
 		_ = ctx.Error(appError)
 		return
 	}
@@ -60,7 +60,7 @@ func (c *Controller) GetAccessTokenByRefreshToken(ctx *gin.Context) {
 	var request AccessTokenRequest
 
 	if err := controllers.BindJSON(ctx, &request); err != nil {
-		appError := domainErrors.NewAppError(err, domainErrors.ValidationError)
+		appError := domainError.NewAppError(err, domainError.ValidationError)
 		_ = ctx.Error(appError)
 		return
 	}

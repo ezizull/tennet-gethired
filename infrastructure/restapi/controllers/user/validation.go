@@ -5,7 +5,7 @@ import (
 	"errors"
 	"regexp"
 	"strings"
-	domainErrors "tennet/gethired/domain/errors"
+	domainError "tennet/gethired/domain/errors"
 )
 
 func updateValidation(request *UpdateUserRequest) (err error) {
@@ -63,7 +63,7 @@ func updateValidation(request *UpdateUserRequest) (err error) {
 	}
 
 	if errorsValidation != nil {
-		err = domainErrors.NewAppError(errors.New(strings.Join(errorsValidation, ", ")), domainErrors.ValidationError)
+		err = domainError.NewAppError(errors.New(strings.Join(errorsValidation, ", ")), domainError.ValidationError)
 	}
 	return
 }
@@ -109,7 +109,7 @@ func createValidation(request NewUserRequest) error {
 	}
 
 	if errorsValidation != nil {
-		return domainErrors.NewAppError(errors.New(strings.Join(errorsValidation, ", ")), domainErrors.ValidationError)
+		return domainError.NewAppError(errors.New(strings.Join(errorsValidation, ", ")), domainError.ValidationError)
 	}
 	return nil
 }

@@ -4,14 +4,14 @@ import (
 	"errors"
 	"strings"
 
-	domainErrors "tennet/gethired/domain/errors"
+	domainError "tennet/gethired/domain/errors"
 )
 
 func createValidation(assetBody *NewWalletRequest) (err error) {
 	var errorsValidation []string
 
 	if errorsValidation != nil {
-		err = domainErrors.NewAppError(errors.New(strings.Join(errorsValidation, ", ")), domainErrors.ValidationError)
+		err = domainError.NewAppError(errors.New(strings.Join(errorsValidation, ", ")), domainError.ValidationError)
 	}
 	return
 }
@@ -20,12 +20,12 @@ func updateValidation(assetBody *UpdateWalletRequest) (err error) {
 	var errorsValidation []string
 
 	if assetBody.Name == nil {
-		err = domainErrors.NewAppError(errors.New("Wallet name cant empty"), domainErrors.NotFound)
+		err = domainError.NewAppError(errors.New("Wallet name cant empty"), domainError.NotFound)
 		return
 	}
 
 	if errorsValidation != nil {
-		err = domainErrors.NewAppError(errors.New(strings.Join(errorsValidation, ", ")), domainErrors.ValidationError)
+		err = domainError.NewAppError(errors.New(strings.Join(errorsValidation, ", ")), domainError.ValidationError)
 	}
 	return
 }

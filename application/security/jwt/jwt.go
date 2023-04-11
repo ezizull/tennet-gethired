@@ -5,7 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"strconv"
-	domainErrors "tennet/gethired/domain/errors"
+	domainError "tennet/gethired/domain/errors"
 	"time"
 
 	"github.com/golang-jwt/jwt/v5"
@@ -108,7 +108,7 @@ func GetClaimsAndVerifyToken(tokenString string, tokenType string) (claims jwt.M
 	JWTRefreshSecure := viper.GetString(TokenTypeKeyName[tokenType])
 	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
-			return nil, domainErrors.NewAppError(errors.New(fmt.Sprintf("unexpected signing method: %v", token.Header["alg"])), domainErrors.NotAuthenticated)
+			return nil, domainError.NewAppError(errors.New(fmt.Sprintf("unexpected signing method: %v", token.Header["alg"])), domainError.NotAuthenticated)
 		}
 
 		return []byte(JWTRefreshSecure), nil
@@ -116,12 +116,12 @@ func GetClaimsAndVerifyToken(tokenString string, tokenType string) (claims jwt.M
 
 	if claims, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
 		if claims["type"] != tokenType {
-			return nil, domainErrors.NewAppError(errors.New("invalid token type"), domainErrors.NotAuthenticated)
+			return nil, domainError.NewAppError(errors.New("invalid token type"), domainError.NotAuthenticated)
 		}
 
 		var timeExpire = claims["exp"].(float64)
 		if time.Now().Unix() > int64(timeExpire) {
-			return nil, domainErrors.NewAppError(errors.New("token expired"), domainErrors.NotAuthenticated)
+			return nil, domainError.NewAppError(errors.New("token expired"), domainError.NotAuthenticated)
 		}
 
 		return claims, nil

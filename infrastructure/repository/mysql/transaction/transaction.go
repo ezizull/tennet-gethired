@@ -2,7 +2,7 @@ package transaction
 
 import (
 	"encoding/json"
-	domainErrors "tennet/gethired/domain/errors"
+	domainError "tennet/gethired/domain/errors"
 	domainTransaction "tennet/gethired/domain/transaction"
 
 	"gorm.io/gorm"
@@ -20,16 +20,16 @@ func (r *Repository) Create(newTransaction *domainTransaction.AssetTransaction) 
 
 	if tx.Error != nil {
 		byteErr, _ := json.Marshal(tx.Error)
-		var newError domainErrors.GormErr
+		var newError domainError.GormErr
 		err = json.Unmarshal(byteErr, &newError)
 		if err != nil {
 			return
 		}
 		switch newError.Number {
 		case 1062:
-			err = domainErrors.NewAppErrorWithType(domainErrors.ResourceAlreadyExists)
+			err = domainError.NewAppErrorWithType(domainError.ResourceAlreadyExists)
 		default:
-			err = domainErrors.NewAppErrorWithType(domainErrors.UnknownError)
+			err = domainError.NewAppErrorWithType(domainError.UnknownError)
 		}
 		return
 	}
@@ -42,12 +42,12 @@ func (r *Repository) Create(newTransaction *domainTransaction.AssetTransaction) 
 func (r *Repository) Delete(id int) (err error) {
 	tx := r.DB.Unscoped().Delete(&AssetTransaction{}, id)
 	if tx.Error != nil {
-		err = domainErrors.NewAppErrorWithType(domainErrors.UnknownError)
+		err = domainError.NewAppErrorWithType(domainError.UnknownError)
 		return
 	}
 
 	if tx.RowsAffected == 0 {
-		err = domainErrors.NewAppErrorWithType(domainErrors.NotFound)
+		err = domainError.NewAppErrorWithType(domainError.NotFound)
 	}
 
 	return

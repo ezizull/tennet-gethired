@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 
 	domainAsset "tennet/gethired/domain/assets"
-	domainErrors "tennet/gethired/domain/errors"
+	domainError "tennet/gethired/domain/errors"
 
 	"gorm.io/gorm"
 )
@@ -57,16 +57,16 @@ func (r *Repository) Create(newAsset *domainAsset.Asset) (createdAsset *domainAs
 
 	if tx.Error != nil {
 		byteErr, _ := json.Marshal(tx.Error)
-		var newError domainErrors.GormErr
+		var newError domainError.GormErr
 		err = json.Unmarshal(byteErr, &newError)
 		if err != nil {
 			return
 		}
 		switch newError.Number {
 		case 1062:
-			err = domainErrors.NewAppErrorWithType(domainErrors.ResourceAlreadyExists)
+			err = domainError.NewAppErrorWithType(domainError.ResourceAlreadyExists)
 		default:
-			err = domainErrors.NewAppErrorWithType(domainErrors.UnknownError)
+			err = domainError.NewAppErrorWithType(domainError.UnknownError)
 		}
 		return
 	}
@@ -83,9 +83,9 @@ func (r *Repository) GetByID(id int) (*domainAsset.Asset, error) {
 	if err != nil {
 		switch err.Error() {
 		case gorm.ErrRecordNotFound.Error():
-			err = domainErrors.NewAppErrorWithType(domainErrors.NotFound)
+			err = domainError.NewAppErrorWithType(domainError.NotFound)
 		default:
-			err = domainErrors.NewAppErrorWithType(domainErrors.UnknownError)
+			err = domainError.NewAppErrorWithType(domainError.UnknownError)
 		}
 		return &domainAsset.Asset{}, err
 	}
@@ -99,7 +99,7 @@ func (r *Repository) GetOneByMap(updateAsset map[string]interface{}) (*domainAss
 
 	err := r.DB.Where(updateAsset).Limit(1).Find(&asset).Error
 	if err != nil {
-		err = domainErrors.NewAppErrorWithType(domainErrors.UnknownError)
+		err = domainError.NewAppErrorWithType(domainError.UnknownError)
 		return nil, err
 	}
 	return asset.toDomainMapper(), err
@@ -115,23 +115,27 @@ func (r *Repository) Update(id int64, updateAsset *domainAsset.Asset) (*domainAs
 
 	if err != nil {
 		byteErr, _ := json.Marshal(err)
-		var newError domainErrors.GormErr
+		var newError domainError.GormErr
 		err = json.Unmarshal(byteErr, &newError)
 		if err != nil {
 			return &domainAsset.Asset{}, err
 		}
 		switch newError.Number {
 		case 1062:
-			err = domainErrors.NewAppErrorWithType(domainErrors.ResourceAlreadyExists)
+			err = domainError.NewAppErrorWithType(domainError.ResourceAlreadyExists)
 			return &domainAsset.Asset{}, err
 
 		default:
-			err = domainErrors.NewAppErrorWithType(domainErrors.UnknownError)
+			err = domainError.NewAppErrorWithType(domainError.UnknownError)
 			return &domainAsset.Asset{}, err
 		}
 	}
 
 	err = r.DB.Where("id = ?", id).First(&asset).Error
+	if err != nil {
+		err = domainError.NewAppErrorWithType(domainError.NotFound)
+		return &domainAsset.Asset{}, err
+	}
 
 	return asset.toDomainMapper(), err
 }
@@ -140,12 +144,12 @@ func (r *Repository) Update(id int64, updateAsset *domainAsset.Asset) (*domainAs
 func (r *Repository) Delete(id int) (err error) {
 	tx := r.DB.Delete(&Asset{}, id)
 	if tx.Error != nil {
-		err = domainErrors.NewAppErrorWithType(domainErrors.UnknownError)
+		err = domainError.NewAppErrorWithType(domainError.UnknownError)
 		return
 	}
 
 	if tx.RowsAffected == 0 {
-		err = domainErrors.NewAppErrorWithType(domainErrors.NotFound)
+		err = domainError.NewAppErrorWithType(domainError.NotFound)
 	}
 
 	return

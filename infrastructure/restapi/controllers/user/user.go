@@ -7,7 +7,7 @@ import (
 	"strconv"
 
 	useCaseUser "tennet/gethired/application/usecases/user"
-	domainErrors "tennet/gethired/domain/errors"
+	domainError "tennet/gethired/domain/errors"
 	"tennet/gethired/infrastructure/restapi/controllers"
 
 	"github.com/gin-gonic/gin"
@@ -34,14 +34,14 @@ func (c *Controller) NewUser(ctx *gin.Context) {
 	var request NewUserRequest
 
 	if err := controllers.BindJSON(ctx, &request); err != nil {
-		appError := domainErrors.NewAppError(err, domainErrors.ValidationError)
+		appError := domainError.NewAppError(err, domainError.ValidationError)
 		_ = ctx.Error(appError)
 		return
 	}
 
 	err := createValidation(request)
 	if err != nil {
-		appError := domainErrors.NewAppError(err, domainErrors.ValidationError)
+		appError := domainError.NewAppError(err, domainError.ValidationError)
 		_ = ctx.Error(appError)
 		return
 	}
@@ -68,14 +68,14 @@ func (c *Controller) NewUser(ctx *gin.Context) {
 func (c *Controller) GetUsersByID(ctx *gin.Context) {
 	userID, err := strconv.Atoi(ctx.Param("id"))
 	if err != nil {
-		appError := domainErrors.NewAppError(errors.New("user id is invalid"), domainErrors.ValidationError)
+		appError := domainError.NewAppError(errors.New("user id is invalid"), domainError.ValidationError)
 		_ = ctx.Error(appError)
 		return
 	}
 
 	user, err := c.UserService.GetByID(userID)
 	if err != nil {
-		appError := domainErrors.NewAppError(err, domainErrors.ValidationError)
+		appError := domainError.NewAppError(err, domainError.ValidationError)
 		_ = ctx.Error(appError)
 		return
 	}
@@ -98,7 +98,7 @@ func (c *Controller) GetUsersByID(ctx *gin.Context) {
 func (c *Controller) UpdateUser(ctx *gin.Context) {
 	userID, err := strconv.Atoi(ctx.Param("id"))
 	if err != nil {
-		appError := domainErrors.NewAppError(errors.New("param id is necessary in the url"), domainErrors.ValidationError)
+		appError := domainError.NewAppError(errors.New("param id is necessary in the url"), domainError.ValidationError)
 		_ = ctx.Error(appError)
 		return
 	}
@@ -106,7 +106,7 @@ func (c *Controller) UpdateUser(ctx *gin.Context) {
 	var request UpdateUserRequest
 
 	if err := controllers.BindJSON(ctx, &request); err != nil {
-		appError := domainErrors.NewAppError(err, domainErrors.ValidationError)
+		appError := domainError.NewAppError(err, domainError.ValidationError)
 		_ = ctx.Error(appError)
 		return
 	}
@@ -141,7 +141,7 @@ func (c *Controller) UpdateUser(ctx *gin.Context) {
 func (c *Controller) DeleteUser(ctx *gin.Context) {
 	userID, err := strconv.Atoi(ctx.Param("id"))
 	if err != nil {
-		appError := domainErrors.NewAppError(errors.New("param id is necessary in the url"), domainErrors.ValidationError)
+		appError := domainError.NewAppError(errors.New("param id is necessary in the url"), domainError.ValidationError)
 		_ = ctx.Error(appError)
 		return
 	}
