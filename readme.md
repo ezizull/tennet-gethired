@@ -49,9 +49,9 @@ Open in the web browser
 
 Import to postman
 
-[![Download Collection](https://img.shields.io/badge/Download%20Collection-EF5B25?style=for-the-badge&logo=postman&logoColor=white)]()  
+[![Download Collection](https://img.shields.io/badge/Download%20Collection-EF5B25?style=for-the-badge&logo=postman&logoColor=white)](https://github.com/ezizull/tennet-gethired/blob/master/docs/tennet-gethired.postman_collection.json)  
 
-[![Download Environment](https://img.shields.io/badge/Download%20Environment-EF5B25?style=for-the-badge&logo=postman&logoColor=white)]()
+[![Download Environment](https://img.shields.io/badge/Download%20Environment-EF5B25?style=for-the-badge&logo=postman&logoColor=white)](https://github.com/ezizull/tennet-gethired/blob/master/docs/tennet-gethired%40localhost.postman_environment.json)
 
 ## API Reference
 
@@ -239,8 +239,8 @@ Update asset wallet_id and record to asset transaction. Return created asset tra
 Show all api documentation with firendly interface.
 
 #### Postman 
-[![Download Collection](https://img.shields.io/badge/Download%20Collection-EF5B25?style=for-the-badge&logo=postman&logoColor=white)]()  
+[![Download Collection](https://img.shields.io/badge/Download%20Collection-EF5B25?style=for-the-badge&logo=postman&logoColor=white)](https://github.com/ezizull/tennet-gethired/blob/master/docs/tennet-gethired.postman_collection.json)  
 
-[![Download Environment](https://img.shields.io/badge/Download%20Environment-EF5B25?style=for-the-badge&logo=postman&logoColor=white)]()
+[![Download Environment](https://img.shields.io/badge/Download%20Environment-EF5B25?style=for-the-badge&logo=postman&logoColor=white)](https://github.com/ezizull/tennet-gethired/blob/master/docs/tennet-gethired%40localhost.postman_environment.json)
 
 Show all api documentation in postman.
