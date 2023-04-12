@@ -47,7 +47,7 @@ Open in the web browser
   localhost:4000/{{version}}/swagger/index.html#/
 ```
 
-Import to postman
+**Save link as** and **Import to postman**
 
 [![Download Collection](https://img.shields.io/badge/Download%20Collection-EF5B25?style=for-the-badge&logo=postman&logoColor=white)](https://github.com/ezizull/tennet-gethired/blob/master/docs/tennet-gethired.postman_collection.json)  
 
@@ -238,7 +238,9 @@ Update asset wallet_id and record to asset transaction. Return created asset tra
 ```
 Show all api documentation with firendly interface.
 
-#### Postman 
+#### Postman
+**Save link as**
+
 [![Download Collection](https://img.shields.io/badge/Download%20Collection-EF5B25?style=for-the-badge&logo=postman&logoColor=white)](https://github.com/ezizull/tennet-gethired/blob/master/docs/tennet-gethired.postman_collection.json)  
 
 [![Download Environment](https://img.shields.io/badge/Download%20Environment-EF5B25?style=for-the-badge&logo=postman&logoColor=white)](https://github.com/ezizull/tennet-gethired/blob/master/docs/tennet-gethired%40localhost.postman_environment.json)
