@@ -213,16 +213,16 @@ Transaction can access only after **login** first.
 
 #### Transaction Asset
 ```bash
-  POST /{{version}}/wallet
+  POST /{{version}}/transaction
 ```
-| Parameter   | Type     | Description                       |
-| :---------  | :------- | :-------------------------------- |
-| `src_wallet_id`      | `int` | **Required**. Your src wallet id transaction    |
-| `src_asset_id`      | `string` | **Required**. Your src asset id transaction    |
-| `dest_wallet_id`      | `string` | **Required**. Your destination wallet id transaction    |
-| `amount`      | `string` | **Required**. Your amount transaction    |
-| `gas_fee`      | `string` | **Required**. Your gas fee transaction    |
-| `total`      | `string` | **Required**. Your total transaction    |
+| Parameter        | Type     | Description                                           |
+| :--------------  | :------- | :---------------------------------------------------  |
+| `src_wallet_id`  | `int`    | **Required**. Your src wallet id transaction          |
+| `src_asset_id`   | `string` | **Required**. Your src asset id transaction           |
+| `dest_wallet_id` | `string` | **Required**. Your destination wallet id transaction  |
+| `amount`         | `string` | **Required**. Your amount transaction                 |
+| `gas_fee`        | `string` | **Required**. Your gas fee transaction                |
+| `total`          | `string` | **Required**. Your total transaction                  |
 
 Update asset wallet_id and record to asset transaction. Return created asset transaction
 
