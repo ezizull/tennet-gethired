@@ -12,7 +12,7 @@ This is a backend API for an asset transaction service, built using Golang, GORM
 
 
 ## Features
-- User management: register, login, logout, create, update, and delete
+- User management: register, login, refresh-token, create, update, and delete
 - Asset management: get, create, update, and delete assets
 - Wallet management: get, create, update, and delete wallet
 - Transaction management: transfer assets
