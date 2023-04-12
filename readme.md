@@ -1,7 +1,7 @@
 
 # Backend Engineer - Asset Transaction API
 
-This is a backend API for an asset transaction service, built using Golang, GORM, Gin, MySQL, and Hexagonal Architecture. The API provides functionality for managing assets, transactions, and users. It is designed to be scalable, maintainable, and performant.
+This is a backend API for an asset transaction service, built using Golang, GORM, Gin, MySQL, and Hexagonal Architecture. The API provides functionality for managing assets, wallet, transactions, and users. It is designed to be scalable, maintainable, and performant.
 
 
 ## Technologies Used
