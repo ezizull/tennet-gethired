@@ -43,7 +43,7 @@ Run Service
 
 Open in the web browser
 
-```http
+```bash
   localhost:4000/{{version}}/swagger/index.html#/
 ```
 
@@ -57,7 +57,7 @@ Import to postman
 
 ### Authorization
 #### Login
-```http
+```bash
   POST /{{version}}/auth/login
 ```
 | Parameter | Type     | Description                |
@@ -66,7 +66,7 @@ Import to postman
 
 
 #### Register
-```http
+```bash
   POST /{{version}}/user
 ```
 | Parameter  | Type     | Description                       |
@@ -79,7 +79,7 @@ Import to postman
 
 
 #### Refresh Token
-```http
+```bash
   POST /{{version}}/auth/access-token
 ```
 | Parameter      | Type     | Description                       |
@@ -89,13 +89,13 @@ Import to postman
 
 ### User
 #### Get User
-```http
+```bash
   GET /{{version}}/user/:id
 ```
 Takes id and returns the user by the id.
 
 #### Update User
-```http
+```bash
   PATCH /{{version}}/user/:id
 ```
 | Parameter  | Type     | Description                       |
@@ -109,7 +109,7 @@ Takes id and returns the user by the id.
 Takes id and update body. returns the user updated.
 
 #### Delete User
-```http
+```bash
   DELETE /{{version}}/user/:id
 ```
 Takes id and delete the user by the id.
@@ -122,19 +122,19 @@ Assets can access only after **login** first.
 | `Authorization` | JwtAccessToken  | 
 
 #### Get Assets
-```http
+```bash
   GET /{{version}}/assets
 ```
 Get all asset by limit 20 and return as pagination.
 
 #### Get Asset
-```http
+```bash
   GET /{{version}}/assets/:id
 ```
 Get asset returns the asset by the id.
 
 #### Create Asset
-```http
+```bash
   POST /{{version}}/assets
 ```
 | Parameter   | Type     | Description                       |
@@ -147,7 +147,7 @@ Get asset returns the asset by the id.
 | `balance`   | `decimal`| **Required**. Your balance asset  |
 
 #### Update Asset
-```http
+```bash
   PATCH /{{version}}/assets/:id
 ```
 | Parameter   | Type     | Description                       |
@@ -162,7 +162,7 @@ Get asset returns the asset by the id.
 Takes id and update body. returns the asset updated.
 
 #### Delete Asset
-```http
+```bash
   DELETE /{{version}}/assets/:id
 ```
 Takes id and delete the asset by the id.
@@ -174,19 +174,19 @@ Wallet can access only after **login** first.
 | `Authorization` | JwtAccessToken  | 
 
 #### Get Wallets
-```http
+```bash
   GET /{{version}}/wallet
 ```
 Get all wallet by limit 20 and return as pagination.
 
 #### Get Wallet
-```http
+```bash
   GET /{{version}}/wallet/:id
 ```
 Get wallet returns the wallet by the id.
 
 #### Create Wallet
-```http
+```bash
   POST /{{version}}/wallet
 ```
 | Parameter   | Type     | Description                       |
@@ -194,7 +194,7 @@ Get wallet returns the wallet by the id.
 | `name`      | `string` | **Required**. Your name wallet    |
 
 #### Update Wallet
-```http
+```bash
   PATCH /{{version}}/wallet/:id
 ```
 | Parameter   | Type     | Description                       |
@@ -204,7 +204,7 @@ Get wallet returns the wallet by the id.
 Takes id and update body. returns the wallet updated.
 
 #### Delete Wallet
-```http
+```bash
   DELETE /{{version}}/wallet/:id
 ```
 Takes id and delete the wallet by the id.
@@ -216,7 +216,7 @@ Transaction can access only after **login** first.
 | `Authorization` | JwtAccessToken  | 
 
 #### Transaction Asset
-```http
+```bash
   POST /{{version}}/wallet
 ```
 | Parameter   | Type     | Description                       |
@@ -233,7 +233,7 @@ Update asset wallet_id and record to asset transaction. Return created asset tra
 ### Documentation
 #### Swagger 
 ##### Open in the web browser
-```http
+```bash
   localhost:4000/{{version}}/swagger/index.html#/
 ```
 Show all api documentation with firendly interface.
